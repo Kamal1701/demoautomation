@@ -10,7 +10,7 @@ public class HomePage extends CRMTestBase {
 
 	// Page Factory - OR
 
-	@FindBy(name = "name")
+	@FindBy(id = "name")
 	WebElement userName;
 
 	@FindBy(xpath = "//input[@id='email']")
@@ -19,13 +19,16 @@ public class HomePage extends CRMTestBase {
 	@FindBy(xpath = "//img[contains(@class, 'wikipedia-icon')]")
 	WebElement wikiIcon;
 
+	@FindBy(xpath = "//a[contains(text(),'Udemy Courses')]")
+	WebElement udemyCourseBtn;
+
 	// Initializing the page objects
 	public HomePage() {
 		PageFactory.initElements(driver, this);
 	}
 
 	// Action
-	public String validatePageTitle() {
+	public String validateHomePageTitle() {
 		return driver.getTitle();
 	}
 
@@ -33,4 +36,15 @@ public class HomePage extends CRMTestBase {
 		return wikiIcon.isDisplayed();
 	}
 
+	public void inputUserName(String un) {
+		userName.sendKeys(un);
+//		userName.sendKeys(pwd);
+//		coursePage.click();
+
+	}
+
+	public CoursePage userClickCourseBtn() {
+		udemyCourseBtn.click();
+		return new CoursePage();
+	}
 }
